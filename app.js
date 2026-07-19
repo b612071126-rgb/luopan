@@ -1,234 +1,174 @@
-let currentAngle = 0;
+body{
 
+text-align:center;
 
-let offset = 0;
+font-family:
+Arial,
+"Microsoft YaHei";
 
-
-
-function updateCompass(angle){
-
-
-currentAngle = angle;
-
-
-
-let showAngle =
-Math.round(angle);
-
-
-
-document.getElementById("degree")
-.innerHTML =
-showAngle+"°";
-
-
-
-let direction="";
-
-
-
-if(angle < 22.5 || angle >=337.5){
-
-direction="北";
+background:#f4f4f4;
 
 }
 
-else if(angle <67.5){
 
-direction="东北";
+h1{
 
-}
-
-else if(angle <112.5){
-
-direction="东";
-
-}
-
-else if(angle <157.5){
-
-direction="东南";
-
-}
-
-else if(angle <202.5){
-
-direction="南";
-
-}
-
-else if(angle <247.5){
-
-direction="西南";
-
-}
-
-else if(angle <292.5){
-
-direction="西";
-
-}
-
-else{
-
-direction="西北";
+margin-top:20px;
 
 }
 
 
 
-document.getElementById("direction")
-.innerHTML=
-direction;
+.compass{
 
+width:300px;
 
+height:300px;
 
-document.getElementById("needle")
-.style.transform=
-`rotate(${angle}deg)`;
+border:8px solid #333;
 
-}
+border-radius:50%;
 
+margin:40px auto;
 
+background:white;
 
+position:relative;
 
-// 手机方向传感器
-
-function handleOrientation(event){
-
-
-
-let angle =
-event.alpha;
-
-
-
-if(angle){
-
-angle =
-angle + offset;
-
-
-
-angle =
-(angle+360)%360;
-
-
-
-updateCompass(angle);
-
-}
-
+box-shadow:
+0 0 20px #aaa;
 
 }
 
 
 
-// 请求权限
+.north,
+.east,
+.south,
+.west{
 
-function startCompass(){
+position:absolute;
 
+font-size:30px;
 
-
-if(
-typeof DeviceOrientationEvent !== "undefined"
-&&
-typeof DeviceOrientationEvent.requestPermission
-==="function"
-){
-
-
-
-DeviceOrientationEvent
-.requestPermission()
-.then(
-response=>{
-
-
-if(response==="granted"){
-
-window.addEventListener(
-"deviceorientation",
-handleOrientation
-);
-
-}
-
-});
-
-
-}
-
-else{
-
-
-window.addEventListener(
-"deviceorientation",
-handleOrientation
-);
-
-
-}
+font-weight:bold;
 
 }
 
 
 
-document
-.getElementById("calibrate")
-.onclick=function(){
+.north{
 
+top:10px;
 
-offset =
-- currentAngle;
+left:135px;
 
-
-alert(
-"罗盘已校准"
-);
-
-
-};
-
-
-
-startCompass();
-
-
-
-
-// 如果手机没有传感器
-
-setTimeout(()=>{
-
-
-if(currentAngle===0){
-
-
-let test=0;
-
-
-setInterval(()=>{
-
-
-test+=10;
-
-
-if(test>=360){
-
-test=0;
+color:red;
 
 }
 
 
-updateCompass(test);
+.south{
+
+bottom:10px;
+
+left:135px;
+
+}
 
 
-},500);
 
+.east{
+
+right:15px;
+
+top:135px;
+
+}
+
+
+
+.west{
+
+left:15px;
+
+top:135px;
+
+}
+
+
+
+#needle{
+
+
+position:absolute;
+
+top:60px;
+
+left:120px;
+
+font-size:70px;
+
+color:red;
+
+transform-origin:
+
+center 100px;
+
+
+transition:
+0.15s;
 
 
 }
 
 
-},3000);
+
+.info{
+
+background:white;
+
+padding:20px;
+
+border-radius:20px;
+
+margin:20px;
+
+
+}
+
+
+
+#degree{
+
+font-size:45px;
+
+font-weight:bold;
+
+}
+
+
+
+#direction{
+
+font-size:35px;
+
+color:red;
+
+}
+
+
+
+button{
+
+padding:12px 20px;
+
+margin:10px;
+
+border-radius:20px;
+
+border:none;
+
+font-size:16px;
+
+}
