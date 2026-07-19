@@ -1,19 +1,14 @@
 body{
 
-margin:0;
-
-padding:20px;
-
 text-align:center;
 
 font-family:
-"Microsoft YaHei",
-Arial;
+Arial,
+"Microsoft YaHei";
 
-background:#f5f5f5;
+background:#f4f4f4;
 
 }
-
 
 
 h1{
@@ -25,7 +20,6 @@ margin-top:20px;
 
 
 .compass{
-
 
 width:300px;
 
@@ -42,22 +36,20 @@ background:white;
 position:relative;
 
 box-shadow:
-0 0 20px #ccc;
-
-transition:0.3s;
-
+0 0 20px #aaa;
 
 }
 
 
 
-
-.mark{
-
+.north,
+.east,
+.south,
+.west{
 
 position:absolute;
 
-font-size:28px;
+font-size:30px;
 
 font-weight:bold;
 
@@ -67,7 +59,7 @@ font-weight:bold;
 
 .north{
 
-top:15px;
+top:10px;
 
 left:135px;
 
@@ -76,10 +68,9 @@ color:red;
 }
 
 
-
 .south{
 
-bottom:15px;
+bottom:10px;
 
 left:135px;
 
@@ -107,33 +98,12 @@ top:135px;
 
 
 
-.degree-line{
-
-
-position:absolute;
-
-width:2px;
-
-height:140px;
-
-background:#ddd;
-
-left:149px;
-
-top:80px;
-
-
-}
-
-
-
-
 #needle{
 
 
 position:absolute;
 
-top:55px;
+top:60px;
 
 left:120px;
 
@@ -145,17 +115,16 @@ transform-origin:
 
 center 100px;
 
-transition:
 
-0.2s;
+transition:
+0.15s;
 
 
 }
 
 
 
-.panel{
-
+.info{
 
 background:white;
 
@@ -163,9 +132,8 @@ padding:20px;
 
 border-radius:20px;
 
-max-width:300px;
+margin:20px;
 
-margin:auto;
 
 }
 
@@ -173,11 +141,9 @@ margin:auto;
 
 #degree{
 
-
 font-size:45px;
 
-margin:10px;
-
+font-weight:bold;
 
 }
 
@@ -185,10 +151,9 @@ margin:10px;
 
 #direction{
 
-
 font-size:35px;
 
-color:#d33;
+color:red;
 
 }
 
@@ -196,18 +161,14 @@ color:#d33;
 
 button{
 
+padding:12px 20px;
 
-padding:12px 30px;
-
-font-size:18px;
+margin:10px;
 
 border-radius:20px;
 
 border:none;
 
-background:#e53935;
-
-color:white;
-
+font-size:16px;
 
 }
