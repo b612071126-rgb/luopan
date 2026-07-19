@@ -17,46 +17,23 @@
 <body>
 
 
-<h1>
-🧭 个人罗盘
-</h1>
-
+<h1>🧭 个人罗盘</h1>
 
 
 <div class="compass">
 
 
-<div class="mark north">
-北
-</div>
+<div class="north">N</div>
 
+<div class="east">E</div>
 
-<div class="mark east">
-东
-</div>
+<div class="south">S</div>
 
-
-<div class="mark south">
-南
-</div>
-
-
-<div class="mark west">
-西
-</div>
-
-
-
-<div class="degree-line">
-
-</div>
-
+<div class="west">W</div>
 
 
 <div id="needle">
-
 ▲
-
 </div>
 
 
@@ -64,44 +41,59 @@
 
 
 
-<div class="panel">
+<div class="info">
 
 
-<div>
+<h3>
+角度
+</h3>
 
-当前角度
-
-</div>
-
-
-<h2 id="degree">
-
+<div id="degree">
 0°
-
-</h2>
-
-
-
-<div>
-
-当前方向
-
 </div>
 
 
-<h2 id="direction">
 
+<h3>
+方向
+</h3>
+
+<div id="direction">
 北
-
-</h2>
+</div>
 
 
 
 <button id="calibrate">
-
-校准
-
+校准罗盘
 </button>
+
+
+<button id="reset">
+清除校准
+</button>
+
+
+
+<h4>
+传感器状态
+</h4>
+
+
+<p id="status">
+等待传感器...
+</p>
+
+
+<h4>
+调试数据
+</h4>
+
+
+<p id="debug">
+
+</p>
+
 
 
 </div>
