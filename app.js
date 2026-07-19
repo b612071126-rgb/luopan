@@ -1,174 +1,349 @@
-body{
-
-text-align:center;
-
-font-family:
-Arial,
-"Microsoft YaHei";
-
-background:#f4f4f4;
-
-}
+let currentAngle = 0;
 
 
-h1{
+// 校准偏移
 
-margin-top:20px;
-
-}
+let offset =
+Number(
+localStorage.getItem(
+"compassOffset"
+)
+)
+||
+0;
 
 
 
-.compass{
+// 平滑缓存
 
-width:300px;
+let history=[];
 
-height:300px;
 
-border:8px solid #333;
 
-border-radius:50%;
+function smooth(angle){
 
-margin:40px auto;
 
-background:white;
+history.push(angle);
 
-position:relative;
 
-box-shadow:
-0 0 20px #aaa;
+
+if(history.length>10){
+
+history.shift();
 
 }
 
 
 
-.north,
-.east,
-.south,
-.west{
-
-position:absolute;
-
-font-size:30px;
-
-font-weight:bold;
-
-}
+let total=0;
 
 
+history.forEach(a=>{
 
-.north{
+total+=a;
 
-top:10px;
-
-left:135px;
-
-color:red;
-
-}
+});
 
 
-.south{
-
-bottom:10px;
-
-left:135px;
-
-}
-
-
-
-.east{
-
-right:15px;
-
-top:135px;
-
-}
-
-
-
-.west{
-
-left:15px;
-
-top:135px;
-
-}
-
-
-
-#needle{
-
-
-position:absolute;
-
-top:60px;
-
-left:120px;
-
-font-size:70px;
-
-color:red;
-
-transform-origin:
-
-center 100px;
-
-
-transition:
-0.15s;
+return total/history.length;
 
 
 }
 
 
 
-.info{
 
-background:white;
+function getDirection(angle){
 
-padding:20px;
 
-border-radius:20px;
+if(angle<22.5||angle>=337.5)
+return "北";
 
-margin:20px;
+
+if(angle<67.5)
+return "东北";
+
+
+if(angle<112.5)
+return "东";
+
+
+if(angle<157.5)
+return "东南";
+
+
+if(angle<202.5)
+return "南";
+
+
+if(angle<247.5)
+return "西南";
+
+
+if(angle<292.5)
+return "西";
+
+
+return "西北";
+
+
+}
+
+
+
+
+
+function updateCompass(angle){
+
+
+
+angle += offset;
+
+
+
+angle =
+(angle+360)%360;
+
+
+
+angle =
+smooth(angle);
+
+
+
+currentAngle=angle;
+
+
+
+document
+.getElementById("degree")
+.innerHTML=
+Math.round(angle)+"°";
+
+
+
+document
+.getElementById("direction")
+.innerHTML=
+getDirection(angle);
+
+
+
+document
+.getElementById("needle")
+.style.transform=
+`rotate(${angle}deg)`;
+
+
+
+document
+.getElementById("debug")
+.innerHTML=
+
+`
+原始角度:
+${Math.round(angle)}°
+
+校准:
+${offset}°
+
+缓存:
+${history.length}
+`;
+
 
 
 }
 
 
 
-#degree{
 
-font-size:45px;
 
-font-weight:bold;
+function sensorHandler(event){
+
+
+let angle =
+event.alpha;
+
+
+
+if(angle!==null){
+
+
+document
+.getElementById("status")
+.innerHTML=
+"✅ 手机传感器运行中";
+
+
+updateCompass(angle);
+
+
+}
+
 
 }
 
 
 
-#direction{
 
-font-size:35px;
 
-color:red;
+function startSensor(){
+
+
+
+if(
+typeof DeviceOrientationEvent
+!=="undefined"
+&&
+typeof DeviceOrientationEvent.requestPermission
+==="function"
+){
+
+
+DeviceOrientationEvent
+.requestPermission()
+.then(
+result=>{
+
+
+if(result==="granted"){
+
+
+window.addEventListener(
+"deviceorientation",
+sensorHandler
+);
+
+
+}
+
+
+});
+
+
+}
+
+else{
+
+
+window.addEventListener(
+"deviceorientation",
+sensorHandler
+);
+
+
+}
+
 
 }
 
 
 
-button{
 
-padding:12px 20px;
 
-margin:10px;
+// 校准
 
-border-radius:20px;
 
-border:none;
+document
+.getElementById("calibrate")
+.onclick=function(){
 
-font-size:16px;
+
+
+offset =
+-currentAngle;
+
+
+
+localStorage.setItem(
+"compassOffset",
+offset
+);
+
+
+
+alert(
+"校准完成"
+);
+
+
+};
+
+
+
+
+
+// 清除校准
+
+
+document
+.getElementById("reset")
+.onclick=function(){
+
+
+offset=0;
+
+
+localStorage.removeItem(
+"compassOffset"
+);
+
+
+
+alert(
+"已清除校准"
+);
+
+
+};
+
+
+
+
+
+startSensor();
+
+
+
+
+
+// 无传感器测试模式
+
+
+setTimeout(()=>{
+
+
+if(currentAngle===0){
+
+
+
+document
+.getElementById("status")
+.innerHTML=
+"⚠️ 模拟模式";
+
+
+let fake=0;
+
+
+setInterval(()=>{
+
+
+fake+=5;
+
+
+if(fake>=360)
+fake=0;
+
+
+updateCompass(fake);
+
+
+},500);
+
 
 }
+
+
+},3000);
