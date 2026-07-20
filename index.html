@@ -7,9 +7,300 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>个人罗盘</title>
 
-<link rel="stylesheet" href="style.css">
+<title>
+智能数字罗盘 v1.0
+</title>
+
+
+<style>
+
+*{
+
+box-sizing:border-box;
+
+}
+
+
+body{
+
+margin:0;
+
+padding:0;
+
+font-family:
+
+"Microsoft YaHei",
+Arial;
+
+background:#f2f2f2;
+
+color:#222;
+
+text-align:center;
+
+}
+
+
+
+header{
+
+background:#222;
+
+color:white;
+
+padding:18px;
+
+font-size:22px;
+
+}
+
+
+
+.container{
+
+padding:15px;
+
+}
+
+
+
+.card{
+
+background:white;
+
+border-radius:20px;
+
+padding:15px;
+
+margin:15px 0;
+
+box-shadow:
+
+0 3px 10px rgba(0,0,0,.1);
+
+}
+
+
+
+
+
+/* 罗盘 */
+
+.compass{
+
+width:320px;
+
+height:320px;
+
+border:
+
+8px solid #333;
+
+border-radius:50%;
+
+margin:
+
+20px auto;
+
+position:relative;
+
+background:white;
+
+}
+
+
+
+
+
+.direction{
+
+position:absolute;
+
+font-size:28px;
+
+font-weight:bold;
+
+}
+
+
+
+.n{
+
+top:15px;
+
+left:145px;
+
+color:red;
+
+}
+
+
+
+.s{
+
+bottom:15px;
+
+left:145px;
+
+}
+
+
+
+.e{
+
+right:20px;
+
+top:145px;
+
+}
+
+
+
+.w{
+
+left:20px;
+
+top:145px;
+
+}
+
+
+
+
+#needle{
+
+position:absolute;
+
+top:55px;
+
+left:125px;
+
+font-size:80px;
+
+color:red;
+
+transform-origin:
+
+center 105px;
+
+transition:.2s;
+
+}
+
+
+
+
+#angle{
+
+font-size:45px;
+
+font-weight:bold;
+
+}
+
+
+
+#dir{
+
+font-size:30px;
+
+color:#d33;
+
+}
+
+
+
+
+button{
+
+
+padding:12px 18px;
+
+margin:6px;
+
+border:none;
+
+border-radius:20px;
+
+background:#333;
+
+color:white;
+
+font-size:16px;
+
+
+}
+
+
+
+input,textarea{
+
+
+width:90%;
+
+padding:10px;
+
+margin:6px;
+
+border-radius:10px;
+
+border:1px solid #ccc;
+
+}
+
+
+
+.menu{
+
+
+display:flex;
+
+justify-content:space-around;
+
+
+}
+
+
+
+.menu button{
+
+flex:1;
+
+margin:5px;
+
+}
+
+
+
+.hidden{
+
+display:none;
+
+}
+
+
+
+.item{
+
+
+background:#fafafa;
+
+padding:10px;
+
+margin:8px;
+
+border-radius:10px;
+
+text-align:left;
+
+
+}
+
+
+
+</style>
+
 
 </head>
 
@@ -17,93 +308,1559 @@
 <body>
 
 
-<h1>🧭 个人罗盘</h1>
+
+<header>
+
+🧭 智能数字罗盘 v1.0
+
+</header>
+
+
+
+<div class="container">
+
+
+
+<div class="card">
+
 
 
 <div class="compass">
 
 
-<div class="north">N</div>
 
-<div class="east">E</div>
+<div class="direction n">
 
-<div class="south">S</div>
+N
 
-<div class="west">W</div>
+</div>
+
+
+<div class="direction e">
+
+E
+
+</div>
+
+
+<div class="direction s">
+
+S
+
+</div>
+
+
+<div class="direction w">
+
+W
+
+</div>
+
 
 
 <div id="needle">
+
 ▲
-</div>
-
 
 </div>
 
 
+</div>
 
-<div class="info">
 
 
-<h3>
-角度
-</h3>
+<div id="angle">
 
-<div id="degree">
 0°
+
 </div>
 
+
+
+<div id="dir">
+
+北
+
+</div>
+
+
+<div id="detail">
+
+普通模式
+
+</div>
+
+
+
+<button onclick="calibrate()">
+
+校准罗盘
+
+</button>
+
+
+
+<button onclick="clearCalibration()">
+
+清除校准
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<div class="menu">
+
+
+<button onclick="showPage('main')">
+
+🧭罗盘
+
+</button>
+
+
+<button onclick="showPage('record')">
+
+📍记录
+
+</button>
+
+
+<button onclick="showPage('room')">
+
+🏠布局
+
+</button>
+
+
+<button onclick="showPage('target')">
+
+🎯导航
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div id="main">
+
+
+<div class="card">
 
 
 <h3>
-方向
+
+方向信息
+
 </h3>
 
-<div id="direction">
-北
+
+<p id="info">
+
+等待传感器
+
+</p>
+
+
 </div>
-
-
-
-<button id="calibrate">
-校准罗盘
-</button>
-
-
-<button id="reset">
-清除校准
-</button>
-
-
-
-<h4>
-传感器状态
-</h4>
-
-
-<p id="status">
-等待传感器...
-</p>
-
-
-<h4>
-调试数据
-</h4>
-
-
-<p id="debug">
-
-</p>
-
 
 
 </div>
 
 
 
-<script src="app.js"></script>
 
 
-</body>
+<div id="record" class="hidden">
 
 
-</html>
+<div class="card">
+
+
+<h3>
+
+保存方向地点
+
+</h3>
+
+
+<input id="placeName"
+
+placeholder="地点名称">
+
+
+<textarea id="placeNote"
+
+placeholder="备注">
+
+</textarea>
+
+
+
+<button onclick="savePlace()">
+
+保存
+
+</button>
+
+
+<div id="placeList">
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div id="room" class="hidden">
+
+
+<div class="card">
+
+
+<h3>
+
+房间布局
+
+</h3>
+
+
+<input id="roomName"
+
+placeholder="房间">
+
+
+<input id="objectName"
+
+placeholder="物品">
+
+
+<button onclick="saveRoom()">
+
+保存布局
+
+</button>
+
+
+
+<div id="roomList">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div id="target" class="hidden">
+
+
+<div class="card">
+
+
+<h3>
+
+目标导航
+
+</h3>
+
+
+
+<input id="targetAngle"
+
+type="number"
+
+placeholder="目标角度">
+
+
+<button onclick="setTarget()">
+
+确定
+
+</button>
+
+
+
+<h3 id="navResult">
+
+</h3>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+
+// ======================
+// 智能数字罗盘 v1.0
+// 核心引擎
+// ======================
+
+
+let currentAngle = 0;
+
+
+let targetAngle = null;
+
+
+
+// 校准偏移
+
+let calibration =
+Number(
+localStorage.getItem(
+"compassCalibration"
+)
+)
+||0;
+
+
+
+// 数据平滑
+
+let angleHistory=[];
+
+
+
+// 24方位
+
+const directions24=[
+
+"正北",
+
+"北偏东",
+
+"东北偏北",
+
+"东北",
+
+"东偏北",
+
+"正东",
+
+"东偏南",
+
+"东南偏东",
+
+"东南",
+
+"南偏东",
+
+"南偏南",
+
+"正南",
+
+"南偏西",
+
+"西南偏南",
+
+"西南",
+
+"西偏南",
+
+"正西",
+
+"西偏北",
+
+"西北",
+
+"北偏西"
+
+];
+
+
+
+// 八卦
+
+const bagua=[
+
+"坎",
+
+"艮",
+
+"震",
+
+"巽",
+
+"离",
+
+"坤",
+
+"兑",
+
+"乾"
+
+];
+
+
+
+
+// ======================
+// 显示页面
+// ======================
+
+
+function showPage(page){
+
+
+let pages=[
+
+"main",
+"record",
+"room",
+"target"
+
+];
+
+
+pages.forEach(p=>{
+
+
+document
+.getElementById(p)
+.classList
+.add("hidden");
+
+
+});
+
+
+document
+.getElementById(page)
+.classList
+.remove("hidden");
+
+
+}
+
+
+
+// ======================
+// 平滑算法
+// ======================
+
+
+function smoothAngle(angle){
+
+
+angleHistory.push(angle);
+
+
+
+if(angleHistory.length>12){
+
+angleHistory.shift();
+
+}
+
+
+
+let total=0;
+
+
+
+angleHistory.forEach(a=>{
+
+total+=a;
+
+});
+
+
+
+return total/
+angleHistory.length;
+
+
+}
+
+
+
+
+// ======================
+// 24方位
+// ======================
+
+
+function get24Direction(angle){
+
+
+let index =
+Math.floor(
+angle/18
+);
+
+
+return directions24[index]
+||
+"未知";
+
+
+}
+
+
+
+
+
+// ======================
+// 八卦
+// ======================
+
+
+function getBagua(angle){
+
+
+let index =
+Math.floor(
+angle/45
+);
+
+
+
+return bagua[index]
+||
+"乾";
+
+
+}
+
+
+
+
+
+
+// ======================
+// 八方向
+// ======================
+
+
+function getEightDirection(angle){
+
+
+let list=[
+
+"北",
+
+"东北",
+
+"东",
+
+"东南",
+
+"南",
+
+"西南",
+
+"西",
+
+"西北"
+
+];
+
+
+return list[
+Math.round(angle/45)%8
+];
+
+
+}
+
+
+
+
+
+
+// ======================
+// 相对方向
+// ======================
+
+
+function relativeDirections(angle){
+
+
+
+return {
+
+
+前:
+getEightDirection(angle),
+
+
+右:
+getEightDirection(angle+90),
+
+
+后:
+getEightDirection(angle+180),
+
+
+左:
+getEightDirection(angle+270),
+
+
+
+前右:
+getEightDirection(angle+45),
+
+
+后右:
+getEightDirection(angle+135),
+
+
+后左:
+getEightDirection(angle+225),
+
+
+前左:
+getEightDirection(angle+315)
+
+
+
+};
+
+
+}
+
+
+
+
+
+
+
+// ======================
+// 更新罗盘
+// ======================
+
+
+function updateCompass(angle){
+
+
+
+angle += calibration;
+
+
+
+angle =
+(angle+360)%360;
+
+
+
+angle =
+smoothAngle(angle);
+
+
+
+currentAngle =
+angle;
+
+
+
+
+document
+.getElementById("angle")
+.innerHTML =
+
+Math.round(angle)+"°";
+
+
+
+document
+.getElementById("dir")
+.innerHTML =
+
+getEightDirection(angle);
+
+
+
+
+
+document
+.getElementById("needle")
+.style
+.transform =
+
+`rotate(${angle}deg)`;
+
+
+
+
+
+let r =
+relativeDirections(angle);
+
+
+
+document
+.getElementById("info")
+.innerHTML=
+
+`
+
+24方位：
+
+${get24Direction(angle)}
+
+<br><br>
+
+
+八卦：
+
+${getBagua(angle)}
+
+<br><br>
+
+
+前：
+
+${r.前}
+
+<br>
+
+前右：
+
+${r.前右}
+
+<br>
+
+右：
+
+${r.右}
+
+<br>
+
+后右：
+
+${r.后右}
+
+<br>
+
+后：
+
+${r.后}
+
+<br>
+
+后左：
+
+${r.后左}
+
+<br>
+
+左：
+
+${r.左}
+
+<br>
+
+前左：
+
+${r.前左}
+
+`;
+
+
+
+document
+.getElementById("detail")
+.innerHTML=
+
+"24方位 | 八卦 | 相对方向";
+
+
+}
+
+
+
+
+
+
+// ======================
+// 手机传感器
+// ======================
+
+
+function compassSensor(event){
+
+
+
+let angle =
+event.alpha;
+
+
+
+if(angle!==null){
+
+
+
+updateCompass(angle);
+
+
+}
+
+
+
+}
+
+
+
+
+window.addEventListener(
+
+"deviceorientation",
+
+compassSensor
+
+);
+
+
+
+
+
+
+
+// ======================
+// 校准
+// ======================
+
+
+
+function calibrate(){
+
+
+
+calibration =
+-currentAngle;
+
+
+
+localStorage.setItem(
+
+"compassCalibration",
+
+calibration
+
+);
+
+
+
+alert(
+
+"校准完成"
+
+);
+
+
+}
+
+
+
+
+
+
+function clearCalibration(){
+
+
+calibration=0;
+
+
+localStorage.removeItem(
+
+"compassCalibration"
+
+);
+
+
+
+alert(
+
+"校准已清除"
+
+);
+
+
+}
+
+
+
+
+
+// ======================
+// 导航
+// ======================
+
+
+
+function setTarget(){
+
+
+
+targetAngle =
+Number(
+
+document
+.getElementById(
+"targetAngle"
+)
+.value
+
+);
+
+
+
+navigation();
+
+
+}
+
+
+
+
+function navigation(){
+
+
+
+if(targetAngle===null)
+return;
+
+
+
+let diff =
+targetAngle-currentAngle;
+
+
+
+diff =
+(diff+360)%360;
+
+
+
+let text;
+
+
+
+if(diff<10){
+
+text="已经朝向目标";
+
+}
+
+else if(diff<180){
+
+text=
+"向右转 "+
+Math.round(diff)
++"°";
+
+}
+
+else{
+
+text=
+"向左转 "+
+Math.round(360-diff)
++"°";
+
+}
+
+
+
+document
+.getElementById(
+"navResult"
+)
+.innerHTML=
+
+text;
+
+
+}
+
+
+
+// ======================
+// 数据系统
+// ======================
+
+
+
+// 地点记录
+
+
+function savePlace(){
+
+
+let name =
+document
+.getElementById(
+"placeName"
+)
+.value;
+
+
+
+let note =
+document
+.getElementById(
+"placeNote"
+)
+.value;
+
+
+
+if(!name){
+
+alert(
+"请输入地点名称"
+);
+
+return;
+
+}
+
+
+
+
+let list =
+JSON.parse(
+
+localStorage.getItem(
+"places"
+)
+
+||
+"[]"
+
+);
+
+
+
+list.push({
+
+name:name,
+
+angle:
+Math.round(currentAngle),
+
+direction:
+getEightDirection(currentAngle),
+
+direction24:
+get24Direction(currentAngle),
+
+note:note,
+
+time:
+new Date()
+.toLocaleString()
+
+});
+
+
+
+
+
+localStorage.setItem(
+
+"places",
+
+JSON.stringify(list)
+
+);
+
+
+
+document
+.getElementById(
+"placeName"
+)
+.value="";
+
+
+document
+.getElementById(
+"placeNote"
+)
+.value="";
+
+
+
+loadPlaces();
+
+
+}
+
+
+
+
+
+function loadPlaces(){
+
+
+
+let list =
+JSON.parse(
+
+localStorage.getItem(
+"places"
+)
+
+||
+"[]"
+
+);
+
+
+
+let html="";
+
+
+
+list.forEach((item,index)=>{
+
+
+html+=`
+
+<div class="item">
+
+
+<b>
+
+${item.name}
+
+</b>
+
+
+<br>
+
+
+方向：
+
+${item.direction}
+
+
+<br>
+
+
+角度：
+
+${item.angle}°
+
+
+<br>
+
+
+24方位：
+
+${item.direction24}
+
+
+<br>
+
+
+备注：
+
+${item.note}
+
+
+<br>
+
+
+时间：
+
+${item.time}
+
+
+
+<button onclick="deletePlace(${index})">
+
+删除
+
+</button>
+
+
+
+</div>
+
+`;
+
+
+
+});
+
+
+
+document
+.getElementById(
+"placeList"
+)
+.innerHTML=html;
+
+
+}
+
+
+
+
+
+
+
+function deletePlace(index){
+
+
+
+let list =
+JSON.parse(
+
+localStorage.getItem(
+"places"
+)
+
+||
+"[]"
+
+);
+
+
+
+list.splice(index,1);
+
+
+
+localStorage.setItem(
+
+"places",
+
+JSON.stringify(list)
+
+);
+
+
+
+loadPlaces();
+
+
+}
+
+
+
+
+
+
+
+// ======================
+// 房间布局
+// ======================
+
+
+
+
+function saveRoom(){
+
+
+
+let room =
+document
+.getElementById(
+"roomName"
+)
+.value;
+
+
+
+let object =
+document
+.getElementById(
+"objectName"
+)
+.value;
+
+
+
+
+if(!room||!object){
+
+alert(
+"请输入完整信息"
+);
+
+
+return;
+
+}
+
+
+
+
+
+let list =
+JSON.parse(
+
+localStorage.getItem(
+"rooms"
+)
+
+||
+"[]"
+
+);
+
+
+
+
+list.push({
+
+room:room,
+
+object:object,
+
+angle:
+Math.round(currentAngle),
+
+direction:
+getEightDirection(currentAngle),
+
+time:
+new Date()
+.toLocaleString()
+
+});
+
+
+
+
+
+localStorage.setItem(
+
+"rooms",
+
+JSON.stringify(list)
+
+);
+
+
+
+document
+.getElementById(
+"roomName"
+)
+.value="";
+
+
+
+document
+.getElementById(
+"objectName"
+)
+.value="";
+
+
+
+loadRooms();
+
+
+}
+
+
+
+
+
+
+
+function loadRooms(){
+
+
+
+let list =
+JSON.parse(
+
+localStorage.getItem(
+"rooms"
+)
+
+||
+"[]"
+
+);
+
+
+
+let html="";
+
+
+
+list.forEach((item,index)=>{
+
+
+html+=`
+
+<div class="item">
+
+
+房间：
+
+${item.room}
+
+
+<br>
+
+
+物品：
+
+${item.object}
+
+
+<br>
+
+
+方向：
+
+${item.direction}
+
+
+<br>
+
+
+角度：
+
+${item.angle}°
+
+
+
+<br>
+
+
+时间：
+
+${item.time}
+
+
+
+<button onclick="deleteRoom(${index})">
+
+删除
+
+</button>
+
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+
+document
+.getElementById(
+"roomList"
+)
+.innerHTML=html;
+
+
+
+}
+
+
+
+
+
+
+function deleteRoom(index){
+
+
+
+let list =
+JSON.parse(
+
+localStorage.getItem(
+"rooms"
+)
+
+||
+"[]"
+
+);
+
+
+
+list.splice(index,1);
+
+
+
+localStorage.setItem(
+
+"rooms",
+
+JSON.stringify(list)
+
+);
+
+
+
+loadRooms();
+
+
+}
+
+
+
+
+
+
+
+
+// ======================
+// 自动加载
+// ======================
+
+
+
+window.onload=function(){
+
+
+loadPlaces();
+
+
+loadRooms();
+
+
+
+};
