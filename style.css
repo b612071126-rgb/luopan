@@ -1,0 +1,329 @@
+/* =========================
+   基础
+========================= */
+
+body{
+
+    margin:0;
+
+    background:#8b1a0e;
+
+    color:white;
+
+    font-family:
+    "Microsoft YaHei",
+    Arial,
+    sans-serif;
+
+    overflow:hidden;
+
+}
+
+
+
+/* =========================
+   标题
+========================= */
+
+.header{
+
+    text-align:center;
+
+    padding:20px 0;
+
+    font-size:32px;
+
+    background:rgba(255,255,255,0.8);
+
+    color:#111;
+
+}
+
+
+
+/* =========================
+   罗盘区域
+========================= */
+
+.container{
+
+    width:100vw;
+
+    height:80vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+.compass{
+
+    width:90vw;
+
+    height:90vw;
+
+    max-width:600px;
+
+    max-height:600px;
+
+    position:relative;
+
+}
+
+
+
+/* =========================
+   罗盘盘面
+========================= */
+
+.disk{
+
+    width:100%;
+
+    height:100%;
+
+    border-radius:50%;
+
+    background:#e7d47c;
+
+    border:12px solid #222;
+
+    position:absolute;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+/* =========================
+   圆环
+========================= */
+
+
+.circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    border:2px solid #333;
+
+}
+
+
+
+.c1{
+
+    width:95%;
+
+    height:95%;
+
+}
+
+
+
+.c2{
+
+    width:80%;
+
+    height:80%;
+
+}
+
+
+
+.c3{
+
+    width:60%;
+
+    height:60%;
+
+}
+
+
+
+/* =========================
+   中心
+========================= */
+
+.center{
+
+    width:22%;
+
+    height:22%;
+
+    border-radius:50%;
+
+    background:#eee;
+
+    border:3px solid #333;
+
+    position:absolute;
+
+    z-index:5;
+
+}
+
+
+
+/* =========================
+   十字
+========================= */
+
+
+.cross{
+
+    position:absolute;
+
+    background:red;
+
+    z-index:3;
+
+}
+
+
+
+.horizontal{
+
+    width:100%;
+
+    height:2px;
+
+}
+
+
+
+.vertical{
+
+    width:2px;
+
+    height:100%;
+
+}
+
+
+
+/* =========================
+   指针
+========================= */
+
+.pointer{
+
+    position:absolute;
+
+    width:4px;
+
+    height:45%;
+
+    background:red;
+
+    top:5%;
+
+    left:50%;
+
+    transform-origin:bottom;
+
+    z-index:6;
+
+}
+
+
+
+.pointer::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:0;
+
+    left:-8px;
+
+    border-left:10px solid transparent;
+
+    border-right:10px solid transparent;
+
+    border-bottom:25px solid red;
+
+}
+
+
+
+/* =========================
+   方位文字
+========================= */
+
+.direction{
+
+    position:absolute;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+}
+
+
+
+.north{
+
+    top:3%;
+
+    left:47%;
+
+}
+
+
+
+.south{
+
+    bottom:3%;
+
+    left:47%;
+
+}
+
+
+
+.east{
+
+    right:3%;
+
+    top:48%;
+
+}
+
+
+
+.west{
+
+    left:3%;
+
+    top:48%;
+
+}
+
+
+
+/* =========================
+   信息
+========================= */
+
+
+.info{
+
+    text-align:center;
+
+    font-size:24px;
+
+}
