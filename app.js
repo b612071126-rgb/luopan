@@ -1,34 +1,18 @@
-const pointer =
-document.getElementById("pointer");
+const pointer = document.getElementById("pointer");
 
 
-let angle = 0;
+window.addEventListener(
+"deviceorientation",
+function(event){
 
 
-
-function rotatePointer(){
-
-
-angle += 10;
+let heading = event.alpha;
 
 
-if(angle >= 360){
-
-angle = 0;
-
-}
-
-
+//旋转指针
 
 pointer.style.transform =
-`rotate(${angle}deg)`;
+`rotate(${-heading}deg)`;
 
 
-}
-
-
-
-setInterval(
-rotatePointer,
-1000
-);
+});
