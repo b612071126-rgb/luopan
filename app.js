@@ -22,6 +22,8 @@ let heading = event.alpha;
 pointer.style.transform =
 `rotate(${-heading}deg)`;
 
+degreeText.innerHTML =
+"方位角：" + angle + "°";
 
 degree.innerHTML =
 Math.round(angle);
