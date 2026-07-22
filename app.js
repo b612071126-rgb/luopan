@@ -73,12 +73,6 @@ function rotatePointer(){
 }
 
 
-// 5. 定时运行
-
-setInterval(
-rotatePointer,
-1000
-);
 
 
 window.addEventListener(
