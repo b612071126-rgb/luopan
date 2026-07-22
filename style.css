@@ -3,22 +3,11 @@
 ========================= */
 
 body{
-
     margin:0;
-
     background:#8b1a0e;
-
     color:white;
-
-    font-family:
-    "Microsoft YaHei",
-    Arial,
-    sans-serif;
-
-    overflow:hidden;
-
+    font-family:"Microsoft YaHei";
 }
-
 
 
 /* =========================
