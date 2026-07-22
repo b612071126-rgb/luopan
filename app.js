@@ -16,62 +16,27 @@ let angle = 0;
 
 function getDirection(angle){
 
-    if(angle >=337.5 || angle <22.5){
-        return "北";
+    const directions = [
+        "北",
+        "东北",
+        "东",
+        "东南",
+        "南",
+        "西南",
+        "西",
+        "西北"
+    ];
+
+    // 每45度一个方向
+    let index = Math.round(angle / 45);
+
+    // 防止360度超出数组
+    if(index === 8){
+        index = 0;
     }
 
-    if(angle <67.5){
-        return "东北";
-    }
-
-    if(angle <112.5){
-        return "东";
-    }
-
-    if(angle <157.5){
-        return "东南";
-    }
-
-    if(angle <202.5){
-        return "南";
-    }
-
-    if(angle <247.5){
-        return "西南";
-    }
-
-    if(angle <292.5){
-        return "西";
-    }
-
-    return "西北";
+    return directions[index];
 }
-
-
-// 4. 控制罗盘
-
-function rotatePointer(){
-
-    angle += 10;
-
-    if(angle >=360){
-        angle = 0;
-    }
-
-
-    pointer.style.transform =
-    `rotate(${angle}deg)`;
-
-
-    degreeText.innerHTML =
-    "方位角：" + angle + "°";
-
-
-    directionText.innerHTML =
-    "当前：" + getDirection(angle);
-
-}
-
 
 
 
@@ -79,21 +44,26 @@ window.addEventListener(
 "deviceorientation",
 function(event){
 
-
 let heading = event.alpha;
 
 
-//旋转指针
+// 保存真实角度
+angle = normalizeAngle(heading);
 
+
+// 指针旋转
 pointer.style.transform =
-`rotate(${-heading}deg)`;
+`rotate(${-angle}deg)`;
 
+
+// 显示角度
 degreeText.innerHTML =
 "方位角：" + angle + "°";
 
-degree.innerHTML =
-Math.round(angle);
 
+// 显示方向
+directionText.innerHTML =
+"当前：" + getDirection(angle);
 
 
 });
