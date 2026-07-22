@@ -1,3 +1,11 @@
+const degreeText =
+document.getElementById("degree");
+
+
+const directionText =
+document.getElementById("direction");
+
+
 const pointer = document.getElementById("pointer");
 
 
