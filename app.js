@@ -60,15 +60,14 @@ angle = Math.round(heading);
 
 
 pointer.style.transform =
-`rotate(${-angle}deg)`;
+`rotate(${angle}deg)`;
 
 
 degreeText.innerHTML =
-"方位角：" + angle + "°";
+angle + "°";
 
 
-directionText.innerHTML =
-"当前：" + getDirection(angle);
+directionText.innerHTML = getDirection(angle);
 
 
 });
