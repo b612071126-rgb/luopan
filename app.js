@@ -15,4 +15,9 @@ pointer.style.transform =
 `rotate(${-heading}deg)`;
 
 
+degree.innerHTML =
+Math.round(angle);
+
+
+
 });
