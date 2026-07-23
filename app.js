@@ -82,8 +82,9 @@ for(let i=0;i<360;i+=10){
 
     tick.className="tick";
 
-    tick.style.transform=
-    `rotate(${i}deg)`;
+    tick.style.transform =
+    `rotate(${i}deg) 
+    translateY(-150px)`;
 
     ticks.appendChild(tick);
 
