@@ -64,7 +64,7 @@ pointer.style.transform =
 
 
 degreeText.innerHTML =
-angle + "°";
+angle;
 
 
 directionText.innerHTML = getDirection(angle);
