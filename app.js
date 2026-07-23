@@ -71,3 +71,20 @@ directionText.innerHTML = getDirection(angle);
 
 
 });
+
+
+const ticks=document.getElementById("ticks");
+
+
+for(let i=0;i<360;i+=10){
+
+    let tick=document.createElement("div");
+
+    tick.className="tick";
+
+    tick.style.transform=
+    `rotate(${i}deg)`;
+
+    ticks.appendChild(tick);
+
+}
