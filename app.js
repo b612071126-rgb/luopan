@@ -75,7 +75,8 @@ directionText.innerHTML = getDirection(angle);
 
 const ticks=document.getElementById("ticks");
 
-console.log("ticks:", ticks);
+document.body.innerHTML += 
+"<p>ticks存在：" + ticks + "</p>";
 
 for(let i=0;i<360;i+=10){
 
