@@ -73,19 +73,13 @@ directionText.innerHTML = getDirection(angle);
 });
 
 
-const ticks=document.getElementById("ticks");
+const ticks = document.getElementById("ticks");
+const radius = 150;  // 与罗盘实际半径匹配（px）
 
-
-for(let i=0;i<360;i+=10){
-
-    let tick=document.createElement("div");
-
-    tick.className="tick";
-
-    tick.style.transform =
-    `rotate(${i}deg) 
-    translateY(-150px)`;
-
+for (let i = 0; i < 360; i += 10) {
+    let tick = document.createElement("div");
+    tick.className = "tick";
+    // 先旋转该刻度所在的角度，再沿旋转后的Y轴负方向移动半径
+    tick.style.transform = `translate(-50%, -50%) rotate(${i}deg) translateY(-${radius}px)`;
     ticks.appendChild(tick);
-
 }
