@@ -320,26 +320,19 @@ body{
     height:100%;
 
     border-radius:50%;
-
+     top: 0;
+       left: 0;
 }
 
 
-.tick{
-
-    position:absolute;
-
-    width:2px;
-
-    height:12px;
-
-    background:#333;
-
-    left:50%;
-
-    top:50%;
-
-    transform-origin:center 150px;
-
-    z-index:10;
-
+.tick {
+    position: absolute;
+    width: 2px;
+    height: 12px;
+    background: #333;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);  /* 先让刻度自身中心对准圆心 */
+    transform-origin: center center;   /* 默认旋转中心在自身中心 */
+    z-index: 10;
 }
