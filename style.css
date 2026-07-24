@@ -326,18 +326,18 @@ z-index:20;
 
 .tick{
 
-position:absolute;
+    position:absolute;
 
-width:20px;
+    width:20px;
 
-height:20px;
+    height:20px;
 
-background:red;
+    background:white;
 
-left:50%;
+    left:50px;
 
-top:50%;
+    top:50px;
 
-transform:translate(-50%,-50%);
+    z-index:999;
 
 }
