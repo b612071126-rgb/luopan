@@ -333,18 +333,20 @@ body{
 
 .tick{
 
-    position:absolute;
+    position:fixed;
 
     width:100px;
 
     height:100px;
 
-    background:white;
+    background:red;
 
-    left:0;
+    color:white;
 
-    top:0;
+    top:200px;
 
-    z-index:9999;
+    left:100px;
+
+    z-index:99999;
 
 }
