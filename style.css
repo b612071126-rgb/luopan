@@ -330,10 +330,19 @@ z-index:20;
 
 
 .tick{
+
     position:absolute;
-    width:80px;
-    height:80px;
+
+    width:100px;
+
+    height:100px;
+
     background:red;
+
     left:0;
+
     top:0;
+
+    z-index:9999;
+
 }
