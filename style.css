@@ -332,21 +332,11 @@ body{
 
 
 .tick{
-
-    position:fixed;
-
     width:100px;
-
     height:100px;
-
-    background:red;
-
-    color:white;
-
-    top:200px;
-
-    left:100px;
-
-    z-index:99999;
-
+    background:red !important;
+    position:fixed !important;
+    top:200px !important;
+    left:100px !important;
+    z-index:99999 !important;
 }
