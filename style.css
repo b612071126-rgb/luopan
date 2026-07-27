@@ -322,14 +322,14 @@ body{
 
     top:0;
 
-    left:0；
+    left:0;
 
 }
 
 
 
 .tick{
-    position:fixed;
+    position:absolute;
     width:100px;
     height:100px;
     background:red;
