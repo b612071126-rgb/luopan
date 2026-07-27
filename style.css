@@ -329,17 +329,7 @@ body{
 }
 
 
-.tick{
 
-    position:absolute;
-
-    width:3px;
-    height:20px;
-
-    background:red;
-
-    top:0;
-    left:50%;
 .tick{
 
     position:absolute;
