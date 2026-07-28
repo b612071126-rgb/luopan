@@ -312,16 +312,29 @@ body{
 
 
 
+#ticks{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    top:0;
+    left:0;
+
+}
+
+
 .tick{
 
     position:absolute;
 
-    width:100px;
-    height:100px;
+    width:10px;
+    height:40px;
 
     background:red;
 
     top:0;
-    left:0;
+    left:50%;
 
 }
